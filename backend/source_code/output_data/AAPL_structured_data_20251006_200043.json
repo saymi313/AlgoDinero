@@ -1,0 +1,72 @@
+[
+  {
+    "Date": "2025-09-30",
+    "Open": 254.86,
+    "High": 255.92,
+    "Low": 253.11,
+    "Close": 254.63,
+    "Volume": 37704300.0,
+    "Dividends": 0.0,
+    "Stock Splits": 0.0,
+    "Prev_Close": 254.63,
+    "Daily_Return": 0.0,
+    "SMA_5": 254.63,
+    "Volatility_5": 0.0
+  },
+  {
+    "Date": "2025-10-01",
+    "Open": 255.04,
+    "High": 258.79,
+    "Low": 254.93,
+    "Close": 255.45,
+    "Volume": 48713900.0,
+    "Dividends": 0.0,
+    "Stock Splits": 0.0,
+    "Prev_Close": 254.63,
+    "Daily_Return": 0.0032,
+    "SMA_5": 255.04,
+    "Volatility_5": 0.0
+  },
+  {
+    "Date": "2025-10-02",
+    "Open": 256.58,
+    "High": 258.18,
+    "Low": 254.15,
+    "Close": 257.13,
+    "Volume": 42630200.0,
+    "Dividends": 0.0,
+    "Stock Splits": 0.0,
+    "Prev_Close": 255.45,
+    "Daily_Return": 0.0066,
+    "SMA_5": 255.7367,
+    "Volatility_5": 0.0024
+  },
+  {
+    "Date": "2025-10-03",
+    "Open": 254.67,
+    "High": 259.24,
+    "Low": 253.95,
+    "Close": 258.02,
+    "Volume": 49107000.0,
+    "Dividends": 0.0,
+    "Stock Splits": 0.0,
+    "Prev_Close": 257.13,
+    "Daily_Return": 0.0035,
+    "SMA_5": 256.3075,
+    "Volatility_5": 0.0019
+  },
+  {
+    "Date": "2025-10-06",
+    "Open": 257.945,
+    "High": 259.07,
+    "Low": 255.05,
+    "Close": 257.935,
+    "Volume": 13809273.0,
+    "Dividends": 0.0,
+    "Stock Splits": 0.0,
+    "Prev_Close": 258.02,
+    "Daily_Return": -0.0003,
+    "SMA_5": 256.633,
+    "Volatility_5": 0.0028
+  }
+]

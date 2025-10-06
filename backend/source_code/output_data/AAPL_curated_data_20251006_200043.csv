@@ -1,0 +1,12 @@
+Date,Open,High,Low,Close,Volume,Dividends,Stock Splits,Prev_Close,Daily_Return,SMA_5,Volatility_5,Daily_Headlines,Headline_Count,Mean_Sentiment_Score
+2025-09-26,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,AAPL announces new product launch | Analysts upgrade AAPL price target,2,0.0682
+2025-09-27,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,AAPL reports strong quarterly earnings | Market volatility affects AAPL trading,2,0.2167
+2025-09-28,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,AAPL announces new product launch | Analysts upgrade AAPL price target | Analysts upgrade AAPL price target,3,0.0455
+2025-09-29,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,AAPL announces new product launch | Market volatility affects AAPL trading,2,0.0682
+2025-09-30,254.86,255.92,253.11,254.63,37704300.0,0.0,0.0,254.63,0.0,254.63,0.0,AAPL shows resilience in challenging market | AAPL reports strong quarterly earnings | Analysts upgrade AAPL price target,3,0.3111
+2025-10-01,255.04,258.79,254.93,255.45,48713900.0,0.0,0.0,254.63,0.0032,255.04,0.0,Analysts upgrade AAPL price target,1,0.0
+2025-10-02,256.58,258.18,254.15,257.13,42630200.0,0.0,0.0,255.45,0.0066,255.7367,0.0024,Market volatility affects AAPL trading | AAPL shows resilience in challenging market | Analysts upgrade AAPL price target,3,0.1667
+2025-10-03,254.67,259.24,253.95,258.02,49107000.0,0.0,0.0,257.13,0.0035,256.3075,0.0019,AAPL reports strong quarterly earnings,1,0.4333
+2025-10-04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,AAPL reports strong quarterly earnings | AAPL reports strong quarterly earnings,2,0.4333
+2025-10-05,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Market volatility affects AAPL trading | AAPL reports strong quarterly earnings | Analysts upgrade AAPL price target,3,0.1444
+2025-10-06,257.945,259.07,255.05,257.935,13809273.0,0.0,0.0,258.02,-0.0003,256.633,0.0028,AAPL shows resilience in challenging market,1,0.5

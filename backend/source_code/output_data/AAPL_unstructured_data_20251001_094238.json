@@ -1,0 +1,68 @@
+[
+  {
+    "Date": "2025-09-21",
+    "Daily_Headlines": "AAPL reports strong quarterly earnings",
+    "Headline_Count": 1,
+    "Mean_Sentiment_Score": 0.4333
+  },
+  {
+    "Date": "2025-09-22",
+    "Daily_Headlines": "Market volatility affects AAPL trading",
+    "Headline_Count": 1,
+    "Mean_Sentiment_Score": 0.0
+  },
+  {
+    "Date": "2025-09-23",
+    "Daily_Headlines": "Market volatility affects AAPL trading",
+    "Headline_Count": 1,
+    "Mean_Sentiment_Score": 0.0
+  },
+  {
+    "Date": "2025-09-24",
+    "Daily_Headlines": "Analysts upgrade AAPL price target | Analysts upgrade AAPL price target",
+    "Headline_Count": 2,
+    "Mean_Sentiment_Score": 0.0
+  },
+  {
+    "Date": "2025-09-25",
+    "Daily_Headlines": "AAPL reports strong quarterly earnings | AAPL reports strong quarterly earnings",
+    "Headline_Count": 2,
+    "Mean_Sentiment_Score": 0.4333
+  },
+  {
+    "Date": "2025-09-26",
+    "Daily_Headlines": "AAPL announces new product launch | AAPL announces new product launch | Analysts upgrade AAPL price target",
+    "Headline_Count": 3,
+    "Mean_Sentiment_Score": 0.0909
+  },
+  {
+    "Date": "2025-09-27",
+    "Daily_Headlines": "AAPL announces new product launch | AAPL shows resilience in challenging market | AAPL announces new product launch",
+    "Headline_Count": 3,
+    "Mean_Sentiment_Score": 0.2576
+  },
+  {
+    "Date": "2025-09-28",
+    "Daily_Headlines": "AAPL shows resilience in challenging market | AAPL announces new product launch",
+    "Headline_Count": 2,
+    "Mean_Sentiment_Score": 0.3182
+  },
+  {
+    "Date": "2025-09-29",
+    "Daily_Headlines": "Market volatility affects AAPL trading | Market volatility affects AAPL trading",
+    "Headline_Count": 2,
+    "Mean_Sentiment_Score": 0.0
+  },
+  {
+    "Date": "2025-09-30",
+    "Daily_Headlines": "AAPL announces new product launch",
+    "Headline_Count": 1,
+    "Mean_Sentiment_Score": 0.1364
+  },
+  {
+    "Date": "2025-10-01",
+    "Daily_Headlines": "AAPL shows resilience in challenging market",
+    "Headline_Count": 1,
+    "Mean_Sentiment_Score": 0.5
+  }
+]
