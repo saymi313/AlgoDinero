@@ -197,19 +197,22 @@ All endpoints return JSON; errors use standard HTTP codes (e.g., 400 for invalid
 | **Performance**    | Async endpoints + vectorized NumPy/PyTorch ops ensure <2s forecast latency. |
 AttributeBenefitMaintainabilityLayered design allows isolated updates (e.g., swap Plotly for D3.js without touching ML).ScalabilityStateless FastAPI scales horizontally; MongoDB sharding for high-volume data.ExtensibilityPlug-and-play models (e.g., add Prophet via new submodule); easy API versioning.SecurityEnv-var secrets, no DB exposure to client; prepared for auth middleware.PerformanceAsync endpoints + vectorized NumPy/PyTorch ops ensure <2s forecast latency.
 
-🧭 ### **Contributing & Next Steps**
-We welcome contributions! Fork the repo, create a feature branch, and submit a PR with tests. See CONTRIBUTING.md for guidelines.
-Roadmap Ideas:
+## 🧭 Contributing & Next Steps
 
-Real-time WebSocket updates for live trading.
-Advanced ensembles (e.g., XGBoost stacking).
-Multi-asset portfolio forecasting.
-Export to CSV/PDF for reports.
+We welcome contributions! Fork the repo, create a feature branch, and submit a PR with tests. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-📄 ### **License**
-This project is MIT-licensed. See LICENSE for details.
+**Roadmap Ideas:**
+- Real-time WebSocket updates for live trading.
+- Advanced ensembles (e.g., XGBoost stacking).
+- Multi-asset portfolio forecasting.
+- Export to CSV/PDF for reports.
 
-AlgoDinero: Empowering Financial Foresight
-Stack: React + Tailwind + Plotly | FastAPI + PyTorch + Statsmodels | MongoDB Atlas
-Architecture: SPA → REST API → ML Domain → NoSQL Persistence
-Built to inspire innovation in AI-driven finance.
+## 📄 License
+This project is MIT-licensed. See [LICENSE](LICENSE) for details.
+
+---
+
+**AlgoDinero: Empowering Financial Foresight**  
+*Stack: React + Tailwind + Plotly | FastAPI + PyTorch + Statsmodels | MongoDB Atlas*  
+*Architecture: SPA → REST API → ML Domain → NoSQL Persistence*  
+*Built to inspire innovation in AI-driven finance.*
