@@ -81,6 +81,10 @@ AlgoDinero adopts a **4-tier modular architecture** inspired by clean architectu
 - **Testing:** Unit tests (Pytest for backend, Jest for frontend), integration tests for end-to-end flows, and CI/CD hooks for automated validation.
 
 ## 📁 Project Structure
+```markdown
+## 📁 Project Structure
+
+```
 AlgoDinero/
 ├── Backend/
 │   ├── source_code/
@@ -121,7 +125,37 @@ AlgoDinero/
 ├── README.md                           # This file
 ├── docker-compose.yml                  # Local dev stack (FastAPI + MongoDB)
 └── .gitignore                          # Standard ignores
+```
+```
 
+### How to Fix Rendering Issues
+- **Copy-Paste Carefully:** When copying from a rendered Markdown viewer (e.g., GitHub, VS Code preview), ensure no extra spaces or line breaks are added. Paste into a plain text editor first to verify indentation.
+- **Indentation Rules:** Use exactly **2 spaces** for each sub-level in the tree (e.g., `├──` for branches, `│   ` for vertical lines). Avoid tabs—they can render inconsistently.
+- **Viewer Tools:** 
+  - Test in [GitHub README preview](https://github.com) or [Dillinger.io](https://dillinger.io/) for accurate monospaced rendering.
+  - If using VS Code, install "Markdown All in One" extension for live preview.
+- **Alternative Generation:** Run `tree -a -I '.git|node_modules|__pycache__' > structure.txt` in your project root, then format manually or use a script to clean it for Markdown.
+- **If Still Broken:** Replace with a simple bullet list for compatibility:
+  ```
+  - Backend/
+    - source_code/
+      - api/app.py
+      - forecasting/ (forecast_engine.py, model_traditional.py, etc.)
+    - .env.example
+    - Dockerfile
+  - Frontend/
+    - src/ (App.jsx, pages/Home.jsx, components/*, hooks/, utils/)
+    - public/
+    - tailwind.config.js
+    - vite.config.js
+    - package.json
+    - .env.local.example
+  - README.md
+  - docker-compose.yml
+  - .gitignore
+  ```
+
+This ensures clean, consistent display across platforms!
 ## 🚀 Quick Start Guide
 
 ### **Prerequisites**
