@@ -173,24 +173,28 @@ Forecast: Choose horizon; generate and view predictions + metrics.
 
 For production, use npm run build (frontend) and deploy backend via Gunicorn/NGINX.
 
-🔗 ### **API Reference**
-Method,Endpoint,Description,Request Body Example,Response
-POST,/api/curate,"Fetches, aligns, and stores price/news data.","{ ""ticker"": ""AAPL"", ""days_back"": 365 }","{ ""status"": ""success"", ""run_id"": ""uuid"" }"
-POST,/api/visualize,Generates visualization data with forecasts.,"{ ""run_id"": ""uuid"" }","{ ""charts"": [...], ""sentiment"": {...} }"
-POST,/api/forecast,Executes models and computes metrics.,"{ ""ticker"": ""AAPL"", ""horizon"": 7 }","{ ""predictions"": [...], ""metrics"": {...} }"
-GET,/api/health,"System health check (DB connectivity, etc.).",N/A,"{ ""status"": ""healthy"" }"
+## 🔗 API Reference
 
-MethodEndpointDescriptionRequest Body ExampleResponsePOST/api/curateFetches, aligns, and stores price/news data.{ "ticker": "AAPL", "days_back": 365 }{ "status": "success", "run_id": "uuid" }POST/api/visualizeGenerates visualization data with forecasts.{ "run_id": "uuid" }{ "charts": [...], "sentiment": {...} }POST/api/forecastExecutes models and computes metrics.{ "ticker": "AAPL", "horizon": 7 }{ "predictions": [...], "metrics": {...} }GET/api/healthSystem health check (DB connectivity, etc.).N/A{ "status": "healthy" }
+| Method | Endpoint          | Description                                      | Request Body Example                  | Response                          |
+|--------|-------------------|--------------------------------------------------|---------------------------------------|-----------------------------------|
+| POST   | `/api/curate`     | Fetches, aligns, and stores price/news data.     | `{ "ticker": "AAPL", "days_back": 365 }` | `{ "status": "success", "run_id": "uuid" }` |
+| POST   | `/api/visualize`  | Generates visualization data with forecasts.     | `{ "run_id": "uuid" }`                | `{ "charts": [...], "sentiment": {...} }` |
+| POST   | `/api/forecast`   | Executes models and computes metrics.            | `{ "ticker": "AAPL", "horizon": 7 }`  | `{ "predictions": [...], "metrics": {...} }` |
+| GET    | `/api/health`     | System health check (DB connectivity, etc.).     | N/A                                   | `{ "status": "healthy" }`         |
+
 All endpoints return JSON; errors use standard HTTP codes (e.g., 400 for invalid input).
 
-🧩 ### **Why This Architecture?**
-Attribute,Benefit
-Maintainability,"Layered design allows isolated updates (e.g., swap Plotly for D3.js without touching ML)."
-Scalability,Stateless FastAPI scales horizontally; MongoDB sharding for high-volume data.
-Extensibility,"Plug-and-play models (e.g., add Prophet via new submodule); easy API versioning."
-Security,"Env-var secrets, no DB exposure to client; prepared for auth middleware."
-Performance,Async endpoints + vectorized NumPy/PyTorch ops ensure <2s forecast latency.
+---
 
+## 🧩 Why This Architecture?
+
+| Attribute      | Benefit                                                                 |
+|----------------|-------------------------------------------------------------------------|
+| **Maintainability** | Layered design allows isolated updates (e.g., swap Plotly for D3.js without touching ML). |
+| **Scalability**    | Stateless FastAPI scales horizontally; MongoDB sharding for high-volume data. |
+| **Extensibility**  | Plug-and-play models (e.g., add Prophet via new submodule); easy API versioning. |
+| **Security**       | Env-var secrets, no DB exposure to client; prepared for auth middleware. |
+| **Performance**    | Async endpoints + vectorized NumPy/PyTorch ops ensure <2s forecast latency. |
 AttributeBenefitMaintainabilityLayered design allows isolated updates (e.g., swap Plotly for D3.js without touching ML).ScalabilityStateless FastAPI scales horizontally; MongoDB sharding for high-volume data.ExtensibilityPlug-and-play models (e.g., add Prophet via new submodule); easy API versioning.SecurityEnv-var secrets, no DB exposure to client; prepared for auth middleware.PerformanceAsync endpoints + vectorized NumPy/PyTorch ops ensure <2s forecast latency.
 
 🧭 ### **Contributing & Next Steps**
