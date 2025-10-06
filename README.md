@@ -195,8 +195,6 @@ All endpoints return JSON; errors use standard HTTP codes (e.g., 400 for invalid
 | **Extensibility**  | Plug-and-play models (e.g., add Prophet via new submodule); easy API versioning. |
 | **Security**       | Env-var secrets, no DB exposure to client; prepared for auth middleware. |
 | **Performance**    | Async endpoints + vectorized NumPy/PyTorch ops ensure <2s forecast latency. |
-AttributeBenefitMaintainabilityLayered design allows isolated updates (e.g., swap Plotly for D3.js without touching ML).ScalabilityStateless FastAPI scales horizontally; MongoDB sharding for high-volume data.ExtensibilityPlug-and-play models (e.g., add Prophet via new submodule); easy API versioning.SecurityEnv-var secrets, no DB exposure to client; prepared for auth middleware.PerformanceAsync endpoints + vectorized NumPy/PyTorch ops ensure <2s forecast latency.
-
 ## 🧭 Contributing & Next Steps
 
 We welcome contributions! Fork the repo, create a feature branch, and submit a PR with tests. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
