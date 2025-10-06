@@ -80,8 +80,6 @@ AlgoDinero adopts a **4-tier modular architecture** inspired by clean architectu
 - **Observability & Scalability:** Integrated Prometheus metrics for endpoint latency; backend deployable as microservices, with ML inference offloadable to GPU clusters (e.g., via Ray).
 - **Testing:** Unit tests (Pytest for backend, Jest for frontend), integration tests for end-to-end flows, and CI/CD hooks for automated validation.
 
----
-
 ## 📁 Project Structure
 AlgoDinero/
 ├── Backend/
@@ -123,9 +121,6 @@ AlgoDinero/
 ├── README.md                           # This file
 ├── docker-compose.yml                  # Local dev stack (FastAPI + MongoDB)
 └── .gitignore                          # Standard ignores
-
-
----
 
 ## 🚀 Quick Start Guide
 
