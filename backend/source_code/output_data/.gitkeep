@@ -1,0 +1,2 @@
+# This file keeps the output_data directory in git
+# The actual data files are ignored and will be generated when running the application
