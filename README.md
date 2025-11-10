@@ -210,81 +210,104 @@ AlgoDinero adopts a **4-tier modular architecture** inspired by clean architectu
 - **Testing:** Unit tests (Pytest for backend, Jest for frontend), integration tests for end-to-end flows, and CI/CD hooks for automated validation.
 
 ## 📁 Project Structure
-```markdown
-## 📁 Project Structure
 
 ```
 AlgoDinero/
-├── Backend/
+├── backend/
 │   ├── source_code/
 │   │   ├── api/
-│   │   │   └── app.py                  # FastAPI application entrypoint
-│   │   ├── forecasting/
-│   │   │   ├── forecast_engine.py      # Ensemble orchestration
-│   │   │   ├── model_traditional.py    # ARIMA, MA, VAR implementations
-│   │   │   ├── model_neural.py         # PyTorch neural nets (MLP, GRU, LSTM, Transformer)
-│   │   │   └── evaluation.py           # Metrics computation (RMSE, MAE, MAPE)
+│   │   │   └── app.py                      # FastAPI application entrypoint with all endpoints
 │   │   ├── database/
-│   │   │   └── mongo_connector.py      # MongoDB CRUD operations
-│   │   ├── price_fetcher.py            # Yahoo Finance integration
-│   │   ├── news_fetcher.py             # RSS news and sentiment analysis
-│   │   └── requirements.txt            # Python dependencies (FastAPI, PyTorch, yfinance, etc.)
-│   ├── .env.example                    # Template for environment variables
-│   └── Dockerfile                      # For containerization
-├── Frontend/
+│   │   │   └── mongo_connector.py          # MongoDB CRUD operations and connection management
+│   │   ├── forecasting/
+│   │   │   ├── forecast_engine.py          # Ensemble orchestration and adaptive weighting
+│   │   │   ├── model_traditional.py        # ARIMA, MA, VAR implementations
+│   │   │   ├── model_neural.py             # PyTorch neural nets (MLP, GRU, LSTM, Transformer)
+│   │   │   ├── evaluation.py               # Metrics computation (RMSE, MAE, MAPE, Directional Accuracy)
+│   │   │   ├── evaluation_service.py       # Continuous evaluation and backtesting service
+│   │   │   ├── incremental_learning.py     # Model fine-tuning and incremental updates
+│   │   │   ├── model_registry.py           # Model versioning and metadata management
+│   │   │   ├── model_storage.py            # Model serialization and persistence
+│   │   │   ├── model_comparison.py         # Model performance comparison utilities
+│   │   │   ├── retraining_service.py       # Scheduled retraining orchestration
+│   │   │   └── scheduler.py                # APScheduler-based automatic retraining
+│   │   ├── monitoring/
+│   │   │   ├── metrics_aggregator.py       # Aggregates evaluation metrics over time
+│   │   │   └── alert_service.py            # Performance threshold alerts and notifications
+│   │   ├── portfolio/
+│   │   │   ├── portfolio_manager.py        # Portfolio CRUD, trade execution, value tracking
+│   │   │   ├── trading_strategy.py         # Signal generation and position sizing
+│   │   │   └── performance_metrics.py      # Returns, volatility, Sharpe ratio calculations
+│   │   ├── tests/
+│   │   │   ├── test_api.py                 # API endpoint integration tests
+│   │   │   ├── test_evaluation.py          # Evaluation metrics unit tests
+│   │   │   ├── test_incremental_learning.py # Incremental learning tests
+│   │   │   ├── test_portfolio.py           # Portfolio management tests
+│   │   │   ├── test_adaptive_ensemble.py   # Adaptive ensemble weighting tests
+│   │   │   ├── test_scheduler.py           # Scheduler functionality tests
+│   │   │   └── run_tests.py                # Test runner script
+│   │   ├── price_fetcher.py                # Yahoo Finance integration for historical prices
+│   │   ├── news_fetcher.py                 # RSS news scraping and sentiment analysis
+│   │   ├── helper_utils.py                 # Data merging, CSV/JSON export utilities
+│   │   ├── main_scraper.py                 # Main data curation orchestration script
+│   │   └── run_api.py                      # Alternative API entrypoint
+│   ├── Dockerfile                          # Docker containerization for backend
+│   ├── docker-compose.yml                  # Local dev stack (FastAPI + MongoDB)
+│   ├── requirements.txt                    # Python dependencies
+│   └── README.md                           # Backend-specific documentation
+│
+├── frontend/
 │   ├── src/
-│   │   ├── App.jsx                     # Root application component
 │   │   ├── pages/
-│   │   │   └── Home.jsx                # Main dashboard page
+│   │   │   ├── Home.jsx                    # Main forecasting dashboard page
+│   │   │   ├── Monitoring.jsx              # Model performance monitoring dashboard
+│   │   │   └── Portfolio.jsx               # Portfolio management and trading interface
 │   │   ├── components/
-│   │   │   ├── Navbar.jsx              # Navigation bar
-│   │   │   ├── InstrumentSelector.jsx  # Ticker input and selector
-│   │   │   ├── ForecastOptions.jsx     # Horizon and model selection
-│   │   │   ├── ChartDisplay.jsx        # Plotly-based visualizations
-│   │   │   ├── MetricsCard.jsx         # Error and performance metrics
-│   │   │   ├── NewsPanel.jsx           # Sentiment-enriched news feed
-│   │   │   └── Footer.jsx              # Application footer
-│   │   ├── hooks/                      # Custom React hooks (e.g., useApiFetch)
-│   │   └── utils/                      # Helpers (e.g., date formatting)
-│   ├── public/                         # Static assets
-│   ├── tailwind.config.js              # Tailwind customization
-│   ├── vite.config.js                  # Vite build configuration
-│   ├── package.json                    # Node dependencies (React, Plotly, Axios)
-│   └── .env.local.example              # Frontend env template
-├── README.md                           # This file
-├── docker-compose.yml                  # Local dev stack (FastAPI + MongoDB)
-└── .gitignore                          # Standard ignores
-```
+│   │   │   ├── Navbar.jsx                  # Navigation bar with routing
+│   │   │   ├── InstrumentSelector.jsx      # Ticker input and dropdown selector
+│   │   │   ├── ForecastOptions.jsx         # Horizon and model selection UI
+│   │   │   ├── ChartDisplay.jsx            # Plotly candlestick charts with error overlays
+│   │   │   ├── ErrorOverlay.jsx            # Error overlay visibility controls
+│   │   │   ├── MetricsCard.jsx             # Error and performance metrics display
+│   │   │   ├── MetricsChart.jsx            # Time-series metrics visualization
+│   │   │   ├── ModelPerformanceTable.jsx   # Model ranking and comparison table
+│   │   │   ├── AlertPanel.jsx              # Performance alerts display
+│   │   │   ├── NewsPanel.jsx               # Sentiment-enriched news feed
+│   │   │   ├── PortfolioChart.jsx          # Portfolio value and price dual-axis chart
+│   │   │   ├── TradingPanel.jsx            # Trade execution interface (buy/sell/hold)
+│   │   │   ├── PerformanceMetrics.jsx      # Portfolio performance metrics display
+│   │   │   └── Footer.jsx                  # Application footer
+│   │   ├── App.jsx                         # Root application component with routing
+│   │   ├── main.jsx                        # React application entrypoint
+│   │   └── index.css                       # Global styles and Tailwind imports
+│   ├── public/                             # Static assets (favicon, etc.)
+│   ├── package.json                        # Node dependencies (React, Plotly, Axios, etc.)
+│   ├── tailwind.config.js                  # Tailwind CSS configuration
+│   └── vite.config.js                      # Vite build configuration
+│
+├── README.md                               # This file - main project documentation
+├── .gitignore                              # Git ignore rules (excludes .md files except README)
+└── [Documentation Files]                   # A3.md, REQUIREMENTS_COMPLIANCE.md, etc. (gitignored)
 ```
 
-### How to Fix Rendering Issues
-- **Copy-Paste Carefully:** When copying from a rendered Markdown viewer (e.g., GitHub, VS Code preview), ensure no extra spaces or line breaks are added. Paste into a plain text editor first to verify indentation.
-- **Indentation Rules:** Use exactly **2 spaces** for each sub-level in the tree (e.g., `├──` for branches, `│   ` for vertical lines). Avoid tabs—they can render inconsistently.
-- **Viewer Tools:** 
-  - Test in [GitHub README preview](https://github.com) or [Dillinger.io](https://dillinger.io/) for accurate monospaced rendering.
-  - If using VS Code, install "Markdown All in One" extension for live preview.
-- **Alternative Generation:** Run `tree -a -I '.git|node_modules|__pycache__' > structure.txt` in your project root, then format manually or use a script to clean it for Markdown.
-- **If Still Broken:** Replace with a simple bullet list for compatibility:
-  ```
-  - Backend/
-    - source_code/
-      - api/app.py
-      - forecasting/ (forecast_engine.py, model_traditional.py, etc.)
-    - .env.example
-    - Dockerfile
-  - Frontend/
-    - src/ (App.jsx, pages/Home.jsx, components/*, hooks/, utils/)
-    - public/
-    - tailwind.config.js
-    - vite.config.js
-    - package.json
-    - .env.local.example
-  - README.md
-  - docker-compose.yml
-  - .gitignore
-  ```
+### **Directory Overview**
 
-This ensures clean, consistent display across platforms!
+**Backend (`backend/source_code/`):**
+- **`api/`**: FastAPI application with REST endpoints for curation, forecasting, monitoring, and portfolio management
+- **`forecasting/`**: Core ML models, ensemble logic, evaluation, incremental learning, and retraining services
+- **`monitoring/`**: Metrics aggregation, performance tracking, and alerting services
+- **`portfolio/`**: Portfolio management, trading strategies, and performance calculations
+- **`database/`**: MongoDB connection and data persistence layer
+- **`tests/`**: Comprehensive unit and integration tests
+
+**Frontend (`frontend/src/`):**
+- **`pages/`**: Three main application pages (Home/Forecasting, Monitoring, Portfolio)
+- **`components/`**: Reusable React components for charts, forms, metrics, and UI elements
+- **`App.jsx`**: Main router configuration and application shell
+
+**Root:**
+- Configuration files (`.gitignore`, `docker-compose.yml`)
+- Documentation (README.md and other markdown files)
 ## 🚀 Quick Start Guide
 
 ### **Prerequisites**
@@ -316,20 +339,16 @@ cp .env.local.example .env.local
 npm run dev
 ```
 Frontend serves at http://localhost:5173 (Vite default). Open in browser to interact.
-Usage Workflow
 
-Curate Data: Select ticker and run curation to fetch/store prices + news.
-Visualize: Load historical charts with sentiment overlays.
-Forecast: Choose horizon; generate and view predictions + metrics.
+### **Usage Workflow**
 
-For production, use npm run build (frontend) and deploy backend via Gunicorn/NGINX.
-Usage Workflow
+1. **Curate Data**: Select ticker and run curation to fetch/store prices + news
+2. **Visualize**: Load historical charts with sentiment overlays
+3. **Forecast**: Choose horizon; generate and view predictions + metrics
+4. **Monitor**: View model performance metrics, rankings, and alerts on the Monitoring page
+5. **Portfolio**: Create portfolios, execute trades, and track performance on the Portfolio page
 
-Curate Data: Select ticker and run curation to fetch/store prices + news.
-Visualize: Load historical charts with sentiment overlays.
-Forecast: Choose horizon; generate and view predictions + metrics.
-
-For production, use npm run build (frontend) and deploy backend via Gunicorn/NGINX.
+For production, use `npm run build` (frontend) and deploy backend via Gunicorn/NGINX.
 
 ## 🔗 API Reference
 
