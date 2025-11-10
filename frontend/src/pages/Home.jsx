@@ -19,6 +19,7 @@ function Home() {
   const [metrics, setMetrics] = React.useState(null)
   const [sentiment, setSentiment] = React.useState([])
   const [news, setNews] = React.useState([])
+  const [errors, setErrors] = React.useState([])
 
   async function curate() {
     setLoading(true)
@@ -47,6 +48,7 @@ function Home() {
       setComponents(data.components || null)
       setSentiment(data.sentiment || [])
       setNews(data.news || [])
+      setErrors(data.errors || [])
     } catch (e) {
       console.error('Visualize failed', e)
     } finally { setLoading(false) }
@@ -78,7 +80,7 @@ function Home() {
           <ForecastOptions horizon={horizon} setHorizon={setHorizon} onVisualize={visualize} onForecast={runForecast} loading={loading} />
         </div>
       </div>
-      <ChartDisplay historical={historical} forecast={forecast} components={components} sentiment={sentiment} loading={loading} />
+      <ChartDisplay historical={historical} forecast={forecast} components={components} sentiment={sentiment} errors={errors} loading={loading} />
       {metrics && <MetricsCard metrics={metrics} />}
       <NewsPanel news={news} />
       <Footer />

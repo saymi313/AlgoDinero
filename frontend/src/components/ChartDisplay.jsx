@@ -1,8 +1,10 @@
 import React from 'react'
 import Plot from 'react-plotly.js'
+import ErrorOverlay from './ErrorOverlay.jsx'
 
-function ChartDisplay({ historical, forecast, components, sentiment, loading }) {
+function ChartDisplay({ historical, forecast, components, sentiment, errors, loading }) {
   const [show, setShow] = React.useState({ ma:false, arima:false, mlp:false, var:false, gru:false, lstm:false, transformer:false })
+  const [showErrors, setShowErrors] = React.useState(false)
 
   const ohlc = {
     x: historical.map(d => d.date),
@@ -40,6 +42,70 @@ function ChartDisplay({ historical, forecast, components, sentiment, loading }) 
   const sentimentTrace = {
     x: sentiment.map(s=>s.date), y: sentiment.map(s=>s.score), type:'bar', name:'Sentiment', marker:{ color:'#60a5fa' }, xaxis:'x', yaxis:'y2'
   }
+
+  // Error overlay traces
+  const errorTraces = []
+  if (showErrors && errors && errors.length > 0) {
+    errors.forEach((error, idx) => {
+      if (error.actual && error.predicted) {
+        const errorValue = error.actual - error.predicted
+        const errorPct = error.actual > 0 ? (errorValue / error.actual) * 100 : 0
+        
+        // Create error bar trace
+        errorTraces.push({
+          x: [error.date],
+          y: [error.actual],
+          type: 'scatter',
+          mode: 'markers',
+          name: `Error ${idx + 1}`,
+          error_y: {
+            type: 'data',
+            array: [Math.abs(errorValue)],
+            color: errorValue > 0 ? 'rgba(34, 197, 94, 0.5)' : 'rgba(239, 68, 68, 0.5)',
+            thickness: 3
+          },
+          marker: {
+            color: errorValue > 0 ? '#22c55e' : '#ef4444',
+            size: 8,
+            line: { width: 1, color: errorValue > 0 ? '#16a34a' : '#dc2626' }
+          },
+          text: [`Error: ${errorPct.toFixed(2)}%`],
+          hovertemplate: '<b>%{text}</b><br>Actual: $%{y:.2f}<br>Predicted: $' + error.predicted.toFixed(2) + '<extra></extra>'
+        })
+      }
+    })
+
+    // Add error bands (colored regions)
+    if (errors.length > 1) {
+      const errorDates = errors.map(e => e.date).filter(Boolean)
+      const upperBounds = errors.map(e => e.actual > e.predicted ? e.actual : e.predicted)
+      const lowerBounds = errors.map(e => e.actual < e.predicted ? e.actual : e.predicted)
+      
+      errorTraces.push({
+        x: errorDates,
+        y: upperBounds,
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Error Upper',
+        line: { width: 0 },
+        showlegend: false,
+        hoverinfo: 'skip'
+      })
+      
+      errorTraces.push({
+        x: errorDates,
+        y: lowerBounds,
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Error Band',
+        fill: 'tonexty',
+        fillcolor: 'rgba(239, 68, 68, 0.1)',
+        line: { width: 0 },
+        showlegend: false,
+        hoverinfo: 'skip'
+      })
+    }
+  }
   const layout = {
     paper_bgcolor:'#0b1220', plot_bgcolor:'#0b1220', font:{ color:'#e5e7eb' },
     xaxis:{ gridcolor:'#334155' }, yaxis:{ gridcolor:'#334155', domain:[0.35,1] },
@@ -51,6 +117,7 @@ function ChartDisplay({ historical, forecast, components, sentiment, loading }) 
 
   return (
     <div className='bg-slate-900 rounded-md p-3 shadow'>
+      <ErrorOverlay errors={errors} showErrors={showErrors} onToggle={setShowErrors} />
       <div className='flex flex-wrap gap-2 mb-3'>
         {Object.keys(show).map(k => {
           const active = !!show[k]
@@ -75,7 +142,7 @@ function ChartDisplay({ historical, forecast, components, sentiment, loading }) 
         </div>
       ) : (
         <Plot
-          data={[ohlc, forecastTrace, ...extras, sentimentTrace]}
+          data={[ohlc, forecastTrace, ...extras, ...errorTraces, sentimentTrace]}
           layout={layout}
           style={{ width:'100%', height:'100%' }}
           useResizeHandler

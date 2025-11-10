@@ -54,3 +54,55 @@ Thumbs.db
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Ignore all .md files except README.md files
+*.md
+!README.md
+!**/README.md
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ML Models and checkpoints (can be very large)
+*.pkl
+*.h5
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+backend/source_code/models/*
+!backend/source_code/models/.gitkeep
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Test coverage
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+.hypothesis/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*~
+
+# Database files (if using local MongoDB)
+*.db
+*.sqlite
+*.sqlite3
+
+# Compiled files (additional)
+*.pyc
+*.pyo
+*.pyd

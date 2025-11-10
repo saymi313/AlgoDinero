@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: fintech_backend
+    ports:
+      - "8001:8001"
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./source_code:/app/source_code
+      - ./models:/app/models
+      - ./output_data:/app/output_data
+    restart: unless-stopped
+    networks:
+      - fintech_network
+
+  # Optional: MongoDB service (comment out if using external MongoDB)
+  # mongodb:
+  #   image: mongo:7
+  #   container_name: fintech_mongodb
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   networks:
+  #     - fintech_network
+
+networks:
+  fintech_network:
+    driver: bridge
+
+# volumes:
+#   mongodb_data:
+
